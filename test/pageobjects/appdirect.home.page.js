@@ -1,15 +1,21 @@
 var Page = require('./Page')
+var SamlLoginPage = require('../pageobjects/saml.page');
 
 var HomePage = Object.create(Page,{
 
+
+    loginLink :{get: function(){return browser.element('=Log In')}},
+
     signup:{get:function () {
-            browser.timeouts('script', 60000);
             return browser.element('=Sign Up');
+
         }},
 
     open: { value: function() {
             Page.open.call(this, 'home');
-            this.signup.waitForExist();
+
+            //this.signup.waitForExist();
+            this.loginLink.waitForExist();
         } },
 });
 
